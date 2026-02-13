@@ -209,62 +209,6 @@
             pointer-events: none;
         }
 
-        /* Floating keyword bubbles */
-        .bubble-field {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .bubble {
-            position: absolute;
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            white-space: nowrap;
-            animation: floatBubble linear infinite;
-            opacity: 0;
-        }
-
-        .bubble--light {
-            background: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .bubble--accent {
-            background: rgba(108, 92, 231, 0.2);
-            color: #B8B0F5;
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(108, 92, 231, 0.15);
-        }
-
-        .bubble--solid {
-            background: #6C5CE7;
-            color: #FFFFFF;
-            box-shadow: 0 4px 20px rgba(108, 92, 231, 0.3);
-        }
-
-        @keyframes floatBubble {
-            0% {
-                transform: translateY(0) translateX(0) scale(1);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.8;
-            }
-            90% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(-120vh) translateX(30px) scale(0.95);
-                opacity: 0;
-            }
-        }
-
         /* Particle dots */
         .particle {
             position: absolute;
@@ -1326,8 +1270,6 @@
         <div class="hero-glow"></div>
         <div class="hero-grid"></div>
 
-        <!-- Floating keyword bubbles -->
-        <div class="bubble-field" id="bubbleField"></div>
 
         <!-- Particles -->
         <div id="particles"></div>
@@ -1792,52 +1734,6 @@
          JAVASCRIPT
          ============================================ -->
     <script>
-        // ---- Floating keyword bubbles (POST3.png style) ----
-        (function() {
-            var bubbleField = document.getElementById('bubbleField');
-            var keywords = [
-                'core teams', 'AI sourcing', 'startups', 'founding engineers',
-                'tech headhunting', 'Active recruiting', 'employer brand',
-                'first hires', 'scaling', 'talent pipeline', 'culture fit',
-                'interview process', 'compensation', 'onboarding', 'JD writing',
-                'Seed stage', 'Round A', 'hiring roadmap', 'sourcing channels',
-                'founder hiring', 'team building'
-            ];
-            var styles = ['bubble--light', 'bubble--accent', 'bubble--solid'];
-
-            function createBubble() {
-                var el = document.createElement('div');
-                el.className = 'bubble ' + styles[Math.floor(Math.random() * styles.length)];
-                el.textContent = keywords[Math.floor(Math.random() * keywords.length)];
-
-                var left = Math.random() * 90 + 5;
-                var duration = 18 + Math.random() * 22;
-                var delay = Math.random() * 2;
-                var size = 0.7 + Math.random() * 0.4;
-
-                el.style.left = left + '%';
-                el.style.bottom = '-50px';
-                el.style.animationDuration = duration + 's';
-                el.style.animationDelay = delay + 's';
-                el.style.transform = 'scale(' + size + ')';
-                el.style.fontSize = (0.7 + Math.random() * 0.3) + 'rem';
-
-                bubbleField.appendChild(el);
-
-                setTimeout(function() {
-                    if (el.parentNode) el.parentNode.removeChild(el);
-                }, (duration + delay) * 1000);
-            }
-
-            // Initial batch
-            for (var i = 0; i < 12; i++) {
-                setTimeout(createBubble, i * 600);
-            }
-
-            // Ongoing
-            setInterval(createBubble, 2800);
-        })();
-
         // ---- Particles ----
         (function() {
             var container = document.getElementById('particles');
